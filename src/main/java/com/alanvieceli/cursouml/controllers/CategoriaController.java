@@ -1,4 +1,4 @@
-package com.alanvieceli.cursouml.resources;
+package com.alanvieceli.cursouml.controllers;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +11,7 @@ import com.alanvieceli.cursouml.domain.Categoria;
 
 @RestController
 @RequestMapping(value="/categorias")
-public class CategoriaResources {
+public class CategoriaController {
 	
 	@GetMapping
 	public List<Categoria> listar() {
