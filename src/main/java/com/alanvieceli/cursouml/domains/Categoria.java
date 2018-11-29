@@ -1,4 +1,4 @@
-package com.alanvieceli.cursouml.domain;
+package com.alanvieceli.cursouml.domains;
 
 import java.io.Serializable;
 
