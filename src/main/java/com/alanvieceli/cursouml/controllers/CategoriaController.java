@@ -11,18 +11,18 @@ import com.alanvieceli.cursouml.domains.Categoria;
 import com.alanvieceli.cursouml.services.CategoriaService;
 
 @RestController
-@RequestMapping(value="/categorias")
+@RequestMapping(value = "/categorias")
 public class CategoriaController {
-	
+
 	@Autowired
 	private CategoriaService serv;
-	
-	@GetMapping(value="{id}")
+
+	@GetMapping(value = "/{id}")
 	public ResponseEntity<?> find(@PathVariable Integer id) {
-		
+
 		Categoria obj = serv.buscar(id);
-		
 		return ResponseEntity.ok().body(obj);
+
 	}
 
 }
