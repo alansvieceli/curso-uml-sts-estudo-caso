@@ -15,6 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 import com.alanvieceli.cursouml.domains.enums.TipoCliente;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Cliente implements Serializable {
@@ -29,6 +30,8 @@ public class Cliente implements Serializable {
 	private String cpf_ou_cnpj;
 	private Integer tipo;
 	
+	//cliente PODE serealizar endereço
+	@JsonManagedReference
 	@OneToMany(mappedBy="cliente") //um para muitos (qual atribudo q mapeou, lá dentro da classe Cidade)
 	private List<Endereco> enderecos = new ArrayList<>();
 	

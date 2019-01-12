@@ -25,6 +25,7 @@ public class Produto implements Serializable {
 	private String nome;
 	private Double preco;
 
+	//produto nao lista categoria
 	@JsonBackReference //nao busca mais pq ja tem o managemanet em categoria
 	@ManyToMany //Muitos para muitos
 	@JoinTable(
