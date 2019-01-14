@@ -13,6 +13,7 @@ import com.alanvieceli.cursouml.domains.Cidade;
 import com.alanvieceli.cursouml.domains.Cliente;
 import com.alanvieceli.cursouml.domains.Endereco;
 import com.alanvieceli.cursouml.domains.Estado;
+import com.alanvieceli.cursouml.domains.ItemPedido;
 import com.alanvieceli.cursouml.domains.Pagamento;
 import com.alanvieceli.cursouml.domains.PagamentoComBoleto;
 import com.alanvieceli.cursouml.domains.PagamentoComCartao;
@@ -25,6 +26,7 @@ import com.alanvieceli.cursouml.repositories.CidadeRepository;
 import com.alanvieceli.cursouml.repositories.ClienteRepository;
 import com.alanvieceli.cursouml.repositories.EnderecoRepository;
 import com.alanvieceli.cursouml.repositories.EstadoRepository;
+import com.alanvieceli.cursouml.repositories.ItemPedidoRepository;
 import com.alanvieceli.cursouml.repositories.PagamentoRepository;
 import com.alanvieceli.cursouml.repositories.PedidoRepository;
 import com.alanvieceli.cursouml.repositories.ProdutoRepository;
@@ -55,6 +57,9 @@ public class CursoUMLApplication implements CommandLineRunner{
 	
 	@Autowired
 	private PagamentoRepository pagamentoRepository;
+	
+	@Autowired
+	private ItemPedidoRepository ItemPedidoRepository;
 	
 
 	public static void main(String[] args) {
@@ -131,5 +136,22 @@ public class CursoUMLApplication implements CommandLineRunner{
 		
 		pedidoRepository.saveAll(Arrays.asList(ped1, ped2));
 		pagamentoRepository.saveAll(Arrays.asList(pgto1, pgto2));
+		
+		//******************
+		ItemPedido ip1 = new ItemPedido(ped1, p1, 0.00, 1, 2000.00);
+		ItemPedido ip2 = new ItemPedido(ped1, p3, 0.00, 2, 80.00);
+		ItemPedido ip3 = new ItemPedido(ped2, p2, 100.00, 1, 800.00);
+		
+		ped1.getItens().addAll(Arrays.asList(ip1, ip2));
+		ped2.getItens().addAll(Arrays.asList(ip3));
+		
+		p1.getItens().addAll(Arrays.asList(ip1));
+		p2.getItens().addAll(Arrays.asList(ip3));
+		p3.getItens().addAll(Arrays.asList(ip2));		
+		
+		ItemPedidoRepository.saveAll(Arrays.asList(ip1, ip2, ip3));
+		
+		
+		
 	}
 }
