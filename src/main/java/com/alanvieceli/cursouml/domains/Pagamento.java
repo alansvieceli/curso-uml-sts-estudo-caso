@@ -11,6 +11,7 @@ import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 
 import com.alanvieceli.cursouml.domains.enums.EstadoPagamento;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 @Inheritance(strategy=InheritanceType.JOINED)
@@ -23,7 +24,8 @@ public abstract class Pagamento implements Serializable { //abstrata nao pode in
 	
 	@OneToOne
 	@JoinColumn(name="pedido_id")
-	@MapsId //id do pedido vai ser o id do pagamento	
+	@MapsId //id do pedido vai ser o id do pagamento
+	@JsonBackReference // não vai ser serializado
 	private Pedido pedido;
 	
 	public Pagamento() {
