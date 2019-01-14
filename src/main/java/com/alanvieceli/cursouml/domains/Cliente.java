@@ -15,8 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 import com.alanvieceli.cursouml.domains.enums.TipoCliente;
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Cliente implements Serializable {
@@ -31,7 +30,7 @@ public class Cliente implements Serializable {
 	private Integer tipo;
 	
 	//cliente PODE serealizar endereço
-	@JsonManagedReference
+	//@JsonManagedReference
 	@OneToMany(mappedBy="cliente") //um para muitos (qual atribudo q mapeou, lá dentro da classe Cidade)
 	private List<Endereco> enderecos = new ArrayList<>();
 	
@@ -40,7 +39,8 @@ public class Cliente implements Serializable {
 	private Set<String> telefones = new HashSet<>(); //Set não aceita repetição
 	
 	@OneToMany(mappedBy="cliente")	
-	@JsonBackReference // não vai ser serializado
+	//@JsonBackReference // não vai ser serializado
+	@JsonIgnore
 	private List<Pedido> pedidos = new ArrayList<>();
 
 	public Cliente() {
